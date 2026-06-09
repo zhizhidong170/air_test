@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冷氣人格測驗</title>
+
+<style>
+body{
+    font-family:"Microsoft JhengHei",sans-serif;
+    background:#f4ffb;
+    margin:0;
+    padding:20px;
+}
+
+/* 開場頁 */
+.start-page{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.start-page input{
+    padding:10px;
+    width:80%;
+    margin-top:10px;
+}
+
+.start-page button{
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    background:#0088cc;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* 題目頁 */
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+    display:none;
+}
+
+h1{
+    text-align:center;
+    color:#00cc;
+}
+
+.question{
+    display:none;
+}
+
+.question.active{
+    display:block;
+}
+
+label{
+    display:block;
+    padding:12px;
+    margin:10px 0;
+    background:#f2f2f2;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* 結果 */
+#result{
+    display:none;
+    white-space:pre-line;
+    font-size:16px;
+    line-height:1.;
+    padding:20px;
+    background:#f7f7f7;
+    border-radius:15px;
+}
+
+.result-title{
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔵 開場頁 -->
+<div id="startPage" class="start-page">
+    <h1>❄️ 冷氣人格測驗</h1>
+    <p>輸入你的名字開始測驗</p>
+
+    <input type="text" id="username" placeholder="請輸入你的名字">
+    <br>
+    <button onclick="startQuiz()">開始測驗</button>
+</div>
+
+<!-- 題目 -->
+<div class="container">
+
+<h1>❄️ 冷氣人格測驗</h1>
+
+<div class="question active" id="q1">
+<h3>Q1. 買東西時你最在意什麼？</h3>
+<label onclick="next('A')">A. 功能夠多、價格合理最重要</label>
+<label onclick="next('B')">B. 產品背後的技術與專業度</label>
+<label onclick="next('C')">C. 耐用穩定，用久一點沒關係</label>
+<label onclick="next('D')">D. 設計、工藝與使用體驗</label>
+<label onclick="next('E')">E. 好用就好，品牌不重要</label>
+</div>
+
+<div class="question" id="q2">
+<h3>Q2. 裝潢新家時你選擇的設備更傾向？</h3>
+<label onclick="next('A')">A. 功能夠多、價格合理最重要</label>
+<label onclick="next('B')">B. 產品背後的技術與專業度</label>
+<label onclick="next('C')">C. 耐用穩定，用久一點沒關係</label>
+<label onclick="next('D')">D. 設計、工藝與使用體驗</label>
+<label onclick="next('E')">E. 好用就好，品牌不重要</label>
+</div>
+
+<div class="question" id="q3">
+<h3>Q3. 工作上你更喜歡跟哪類型同事共事？</h3>
+<label onclick="next('A')">A. 最有效率的方案派</label>
+<label onclick="next('B')">B. 重視流程與細節派</label>
+<label onclick="next('C')">C. 穩紮穩打派</label>
+<label onclick="next('D')">D. 喜歡研究新技術派</label>
+<label onclick="next('E')">E. 隨遇而安派</label>
+</div>
+
+<div class="question" id="q4">
+<h3>Q4. 朋友眼中的你？</h3>
+<label onclick="next('A')">A. 精打細算</label>
+<label onclick="next('B')">B. 做事可靠</label>
+<label onclick="next('C')">C. 很有原則</label>
+<label onclick="next('D')">D. 有品味</label>
+<label onclick="next('E')">E. 很好相處</label>
+</div>
+
+<div class="question" id="q5">
+<h3>Q5. 選車時你會偏向？</h3>
+<label onclick="next('A')">A. 配備滿滿、價格合理</label>
+<label onclick="next('B')">B. 品牌技術實力強</label>
+<label onclick="next('C')">C. 耐開保值</label>
+<label onclick="next('D')">D. 操控與工藝表現</label>
+<label onclick="next('E')">E. 哪台順眼買哪台</label>
+</div>
+
+<div class="question" id="q6">
+<h3>Q6. 面對重大消費時，你通常會？</h3>
+<label onclick="next('A')">A. 先比較價格和功能</label>
+<label onclick="next('B')">B. 研究規格與技術差異</label>
+<label onclick="next('C')">C. 看長期使用成本</label>
+<label onclick="next('D')">D. 看評測與實際體驗</label>
+<label onclick="next('E')">E. 聽朋友推薦就好</label>
+</div>
+
+<div class="question" id="q7">
+<h3>Q7. 你最認同哪句話？</h3>
+<label onclick="next('A')">A. 錢要花在刀口上</label>
+<label onclick="next('B')">B. 專業的事交給專業</label>
+<label onclick="next('C')">C. 品質決定價值</label>
+<label onclick="next('D')">D. 細節成就完美</label>
+<label onclick="next('E')">E. 開心就好</label>
+</div>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+let scores = {A:0,B:0,C:0,D:0,E:0};
+let current = 1;
+
+const personalities = {
+A:`🔵 Panasonic人格｜務實革新派
+
+你是一個很懂得平衡的人。
+你重視CP值與理性選擇。`,
+
+B:`🟡 大金人格｜專業職人派
+
+你重視專業與細節。
+做事可靠穩定。`,
+
+C:`🔴 日立人格｜長期投資派
+
+你重視長期價值。
+不看短期只看未來。`,
+
+D:`⚫ 三菱重工人格｜工藝技術派
+
+你重視技術與原理。
+喜歡研究本質。`,
+
+E:`🟢 無品牌迷思人格｜自由體驗派
+
+你重視感受。
+不被品牌限制。`
+};
+
+function startQuiz(){
+    let name = document.getElementById("username").value;
+    if(name === ""){
+        alert("請輸入名字");
+        return;
+    }
+
+    document.getElementById("startPage").style.display = "none";
+    document.querySelector(".container").style.display = "block";
+}
+
+function next(val){
+
+scores[val]++;
+
+document.getElementById("q"+current).classList.remove("active");
+current++;
+
+if(current > 7){
+    showResult();
+}else{
+    document.getElementById("q"+current).classList.add("active");
+}
+
+}
+
+function showResult(){
+
+let winner = "A";
+let max = -1;
+
+for(let k in scores){
+    if(scores[k] > max){
+        max = scores[k];
+        winner = k;
+    }
+}
+
+document.getElementById("result").style.display = "block";
+
+document.getElementById("result").innerHTML =
+`<div class="result-title">你的冷氣人格結果</div>
+<pre>${personalities[winner]}</pre>`;
+}
+
+</script>
+
+</body>
+</html>
